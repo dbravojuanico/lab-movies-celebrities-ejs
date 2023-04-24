@@ -4,7 +4,11 @@ const Celeb = require("../models/Celebrity.model");
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-    res.render("celebrities/celebrities")
+    Celeb.find()
+    .then((data)=>{
+        console.log(data)
+        res.render("celebrities/celebrities", {data})
+    })
 })
 
 router.get("/create", (req, res, next) => {
@@ -14,8 +18,11 @@ router.get("/create", (req, res, next) => {
 router.post("/create", (req, res, next) => {
     Celeb.create(req.body)
     .then(()=>{
-        console.log(req.body)
+        res.redirect("/celebrities")
     })
+   error => {
+    res.redirect("/create")
+   }
 });  
 
 module.exports = router;

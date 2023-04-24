@@ -1,1 +1,7 @@
-<a href="celebrities/create">create a new one</a>
+<h2>Celebrity list</h2>
+<hr>
+<% data.forEach(element => { %>
+ <p><%- element.name  %></p>
+<% }) %>
+<hr>
+<a href="celebrities/create">Create a new one</a>
